@@ -120,10 +120,18 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Dialogs\BalanceEnquiryDialog.cs" />
+    <Compile Include="Dialogs\PreferredPaymentDueDateDialog.cs" />
+    <Compile Include="Dialogs\RedemptionProcessDialog.cs" />
+    <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\BalanceEnquiry.cs" />
+    <Compile Include="Model\HelpOptions.cs" />
     <Compile Include="Model\Loans.cs" />
+    <Compile Include="Model\PreferredPaymentDueDate.cs" />
+    <Compile Include="Model\Redemption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

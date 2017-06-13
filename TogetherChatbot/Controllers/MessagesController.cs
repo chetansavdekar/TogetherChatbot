@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
 using TogetherChatbot.Model;
+using TogetherChatbot.Dialogs;
 
 namespace TogetherChatbot
 {
@@ -25,7 +26,8 @@ namespace TogetherChatbot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await InitiateTogetherActivity(activity);
+                //await InitiateTogetherActivity(activity);
+                await Conversation.SendAsync(activity, () => new RootDialog());
             }
             else
             {
