@@ -14,7 +14,7 @@ namespace TogetherChatbot.Dialogs
     {
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Your preferred payment due date is 29.06.2017 and the balance amount is $110");
+            await context.PostAsync("Your preferred payment due date is " + DateTime.Now.ToString("dd/MM/yyyy") + " and the balance amount is $110");
             var RedemptionFormDialog = FormDialog.FromForm(this.BuildPreferredPaymentDueDateForm, FormOptions.PromptInStart);
             context.Call(RedemptionFormDialog, this.EndTask);
         }
