@@ -18,14 +18,13 @@ namespace TogetherChatbot.Dialogs
         {
             await context.PostAsync("Welcome to the Redemption!");
             var redemptionFormDialog = FormDialog.FromForm(this.BuildRedemptionForm, FormOptions.PromptInStart);
-            context.Call(redemptionFormDialog, this.ResumeAfterRedemptionFormDialog);
+            context.Call(redemptionFormDialog, this.EndTask);
         }
 
-        private  Task ResumeAfterRedemptionFormDialog(IDialogContext context, IAwaitable<Redemption> result)
+        private async Task EndTask(IDialogContext context, IAwaitable<object> result)
         {
-            //await context.PostAsync($"Redemption process complete.");
-            return Task.CompletedTask;
-        }      
+            context.Done<object>(result);
+        }
 
         private IForm<Redemption> BuildRedemptionForm()
         {

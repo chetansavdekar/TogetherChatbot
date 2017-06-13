@@ -16,12 +16,17 @@ namespace TogetherChatbot.Dialogs
         {
             await context.PostAsync("Welcome to the Preferred Payment Date Change! Your current date is 29/06/2017 and balance is 20");
             var RedemptionFormDialog = FormDialog.FromForm(this.BuildPreferredPaymentDueDateForm, FormOptions.PromptInStart);
-            context.Call(RedemptionFormDialog, this.ResumeAfterPreferredPaymentDueDateFormDialog);
+            context.Call(RedemptionFormDialog, this.EndTask);
         }
 
-        private async Task ResumeAfterPreferredPaymentDueDateFormDialog(IDialogContext context, IAwaitable<PreferredPaymentDueDate> result)
+        //private async Task ResumeAfterPreferredPaymentDueDateFormDialog(IDialogContext context, IAwaitable<PreferredPaymentDueDate> result)
+        //{
+        //    await context.PostAsync($"Preferred Payment Due Date process complete.");
+        //}
+
+        private async Task EndTask(IDialogContext context, IAwaitable<object> result)
         {
-            await context.PostAsync($"Preferred Payment Due Date process complete.");
+            context.Done<object>(result);
         }
 
         private IForm<PreferredPaymentDueDate> BuildPreferredPaymentDueDateForm()

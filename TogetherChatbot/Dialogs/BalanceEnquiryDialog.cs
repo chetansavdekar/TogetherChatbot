@@ -17,12 +17,12 @@ namespace TogetherChatbot.Dialogs
         {
             await context.PostAsync("Welcome to the Balance enquiry!");
             var balnaceEnquiryDialog = FormDialog.FromForm(this.BuildBalanceEnquiryForm, FormOptions.PromptInStart);
-            context.Call(balnaceEnquiryDialog, this.ResumeAfterBalanceEnquiryFormDialog);
+            context.Call(balnaceEnquiryDialog, this.EndTask);
         }
 
-        private async Task ResumeAfterBalanceEnquiryFormDialog(IDialogContext context, IAwaitable<BalanceEnquiry> result)
+        private async Task EndTask(IDialogContext context, IAwaitable<object> result)
         {
-            await context.PostAsync($"Balance enquiry process complete.");
+            context.Done<object>(result);
         }
 
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
