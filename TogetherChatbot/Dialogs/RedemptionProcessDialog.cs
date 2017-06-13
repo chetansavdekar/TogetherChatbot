@@ -16,7 +16,7 @@ namespace TogetherChatbot.Dialogs
         public Redemption objRedemption;
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Welcome to the Redemption!");
+            //await context.PostAsync("Welcome to the Redemption!");
             var redemptionFormDialog = FormDialog.FromForm(this.BuildRedemptionForm, FormOptions.PromptInStart);
             context.Call(redemptionFormDialog, this.EndTask);
         }
@@ -38,15 +38,11 @@ namespace TogetherChatbot.Dialogs
 
                 // call web service, post an objet objRedemption would be state to create a queue 
                 var queueNumber = "Q123";
-                await context.PostAsync($"Thanks for contacting us. Your case is created and assigned to respective queue. Your queue number is {queueNumber}.");
+                await context.PostAsync($"Your case is created and assigned to respective queue. Your queue number is {queueNumber}.");
             };
 
             return new FormBuilder<Redemption>()
-                .Field(nameof(Redemption.RedemptionRequestDate))
-                .Field(nameof(Redemption.SettlementDate))
-                .Field(nameof(Redemption.Reason))
-                .Field(nameof(Redemption.Recipient))
-                .Field(nameof(Redemption.DeliveryMethod))
+                .AddRemainingFields()
                 .OnCompletion(processRedemption)
                 .Build();
         }

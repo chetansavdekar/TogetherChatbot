@@ -14,30 +14,25 @@ namespace TogetherChatbot.Dialogs
     {
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Welcome to the Preferred Payment Date Change! Your current date is 29/06/2017 and balance is 20");
+            await context.PostAsync("Your preferred payment due date is 29.06.2017 and the balance amount is $110");
             var RedemptionFormDialog = FormDialog.FromForm(this.BuildPreferredPaymentDueDateForm, FormOptions.PromptInStart);
             context.Call(RedemptionFormDialog, this.EndTask);
         }
-
-        //private async Task ResumeAfterPreferredPaymentDueDateFormDialog(IDialogContext context, IAwaitable<PreferredPaymentDueDate> result)
-        //{
-        //    await context.PostAsync($"Preferred Payment Due Date process complete.");
-        //}
 
         private async Task EndTask(IDialogContext context, IAwaitable<object> result)
         {
             context.Done<object>(result);
         }
 
-        private IForm<PreferredPaymentDueDate> BuildPreferredPaymentDueDateForm()
+        private IForm<PreferredPaymentDate> BuildPreferredPaymentDueDateForm()
         {
-            OnCompletionAsyncDelegate<PreferredPaymentDueDate> processBalanceEnquiry = async (context, state) =>
+            OnCompletionAsyncDelegate<PreferredPaymentDate> processBalanceEnquiry = async (context, state) =>
             {
-                var queueNumber = "Q123";
-                await context.PostAsync($"Thanks for contacting us. Your case is created and assigned to respective queue. Your queue number is {queueNumber}.");
+                var queueNumber = "R123";
+                await context.PostAsync($"Your prefered payment due date has been changed. Your reference number is {queueNumber}.");
             };
 
-            return new FormBuilder<PreferredPaymentDueDate>()
+            return new FormBuilder<PreferredPaymentDate>()
                 //.Field(nameof(BalanceEnquiry.LoanAccountNumber))
                 //.Field(new FieldReflector<BalanceEnquiry>(nameof(BalanceEnquiry.ContactNumber))
                 //.SetType(null)

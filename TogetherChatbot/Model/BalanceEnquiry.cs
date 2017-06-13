@@ -12,12 +12,12 @@ namespace TogetherChatbot.Model
         [Prompt("Please enter your loan account number: {||}")]
         public string LoanAccountNumber;
 
-        [Prompt("Please enter contact number: {||}")]
+        [Prompt("Please enter loan contact number: {||}")]
         public string ContactNumber;
 
-        //public PersonalQuestions PersonalQues;
+        public PersonalQuestions PersonalQues;
 
-        //public AccountSpecificQuestions AccSpecQues;
+        public AccountSpecificQuestions AccSpecQues;
 
     }
 }

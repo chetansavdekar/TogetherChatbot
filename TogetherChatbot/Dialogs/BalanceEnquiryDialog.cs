@@ -15,7 +15,7 @@ namespace TogetherChatbot.Dialogs
     {
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Welcome to the Balance enquiry!");
+            //await context.PostAsync("Welcome to the Balance enquiry!");
             var balnaceEnquiryDialog = FormDialog.FromForm(this.BuildBalanceEnquiryForm, FormOptions.PromptInStart);
             context.Call(balnaceEnquiryDialog, this.EndTask);
         }
@@ -34,8 +34,8 @@ namespace TogetherChatbot.Dialogs
         {
             OnCompletionAsyncDelegate<BalanceEnquiry> processBalanceEnquiry = async (context, state) =>
             {
-                var queueNumber = "Q123";
-                await context.PostAsync($"Thanks for contacting us. Your case is created and assigned to respective queue. Your queue number is {queueNumber}.");
+                var amount = "$110";
+                await context.PostAsync($"Your remaining balance amount is {amount}.");
             };
 
             return new FormBuilder<BalanceEnquiry>()

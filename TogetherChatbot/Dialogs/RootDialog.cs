@@ -28,9 +28,13 @@ namespace TogetherChatbot.Dialogs
         {
             var message = await result;
 
-            if ((message.Text.ToLower().Contains("hi")) || message.Text.ToLower().Contains("hello"))
+            if((message.Text.ToLower().Contains("thanks")) || message.Text.ToLower().Contains("Thanks"))
             {
-                await context.PostAsync("Hello there!");
+                this.ShowOptions(context);
+            }
+            else if ((message.Text.ToLower().Contains("hi")) || message.Text.ToLower().Contains("hello"))
+            {
+                await context.PostAsync("Hello, Welcome to support bot");
                 this.ShowOptions(context);
             }
         }

@@ -6,21 +6,23 @@ using System.Web;
 
 namespace TogetherChatbot.Model
 {
+    public enum RequestReasons
+    { InformationPurposes, LitigationAction, Porting, Refinance, SaleOfProperty, NotKnown, Other }
+
+    public enum RecipientType
+    { Customer, OurRepresentative, ThirdParty, Internal }
+
+    public enum DeliveryMode
+    { Post, SecureEmail, Fax }
+
     [Serializable]
     public class Redemption
     {
-        public enum RequestReasons
-        { InformationPurposes, LitigationAction, Porting, Refinance, SaleOfProperty, NotKnown, Other }
-
-        public enum RecipientType
-        { Customer, OurRepresentative, ThirdParty, Internal }
-
-        public enum DeliveryMode
-        { Post, SecureEmail, Fax }
-
+              
+        [Prompt("Please enter your Loan Account Number: ")]
         public string LoanAccountNumber;
 
-        public string CustomerName;
+        //public string CustomerName;
 
         [Prompt("Please enter Redemption request received date: ")]
         public DateTime RedemptionRequestDate;
@@ -36,5 +38,6 @@ namespace TogetherChatbot.Model
 
         [Prompt("Please select a delivery method: {||}")]
         public DeliveryMode DeliveryMethod;
+
     }
 }

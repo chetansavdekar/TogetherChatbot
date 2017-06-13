@@ -128,10 +128,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\AccountSpecificQuestions.cs" />
     <Compile Include="Model\BalanceEnquiry.cs" />
     <Compile Include="Model\HelpOptions.cs" />
     <Compile Include="Model\Loans.cs" />
-    <Compile Include="Model\PreferredPaymentDueDate.cs" />
+    <Compile Include="Model\PersonalQuestions.cs" />
+    <Compile Include="Model\PreferredPaymentDate.cs" />
     <Compile Include="Model\Redemption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
