@@ -29,7 +29,7 @@ namespace TogetherChatbot.Dialogs
             OnCompletionAsyncDelegate<PreferredPaymentDate> processBalanceEnquiry = async (context, state) =>
             {
                 var queueNumber = "R123";
-                await context.PostAsync($"Your prefered payment due date has been changed. Your reference number is {queueNumber}.");
+                await context.PostAsync($"Your preferred payment due date has been changed. Your reference number is {queueNumber}.");
             };
 
             return new FormBuilder<PreferredPaymentDate>()

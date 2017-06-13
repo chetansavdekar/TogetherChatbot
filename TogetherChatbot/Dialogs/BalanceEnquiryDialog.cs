@@ -35,7 +35,7 @@ namespace TogetherChatbot.Dialogs
             OnCompletionAsyncDelegate<BalanceEnquiry> processBalanceEnquiry = async (context, state) =>
             {
                 var amount = "$110";
-                await context.PostAsync($"Your remaining balance amount is {amount}.");
+                await context.PostAsync($"Your outstanding balance amount is {amount}.");
             };
 
             return new FormBuilder<BalanceEnquiry>()
