@@ -15,7 +15,7 @@ namespace TogetherChatbot.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        private const string RedemptionOption = "Redeem your loan         ";
+        private const string RedemptionOption = "Redeem your loan";
         private const string BalanceOption = "Balance Enquiry";
         private const string PrerferedPaymentDueDateOption = "Change Preferred Payment Due Date";
 
@@ -31,11 +31,17 @@ namespace TogetherChatbot.Dialogs
             if((message.Text.ToLower().Contains("thanks")) || message.Text.ToLower().Contains("sure") || message.Text.ToLower().Contains("noted"))
             {
                 await context.PostAsync("My pleasure!");
-                //this.ShowOptions(context);
+                //context.Wait(this.MessageReceivedAsync);
+                context.Done<object>(result);
             }
             else if ((message.Text.ToLower().Contains("hi")) || message.Text.ToLower().Contains("hello"))
             {
                 await context.PostAsync("Hello, Welcome to support bot");
+                this.ShowOptions(context);
+            }
+            else
+            {
+                await context.PostAsync("I am sorry but I didn't understand that. Please select from the below quick links.");
                 this.ShowOptions(context);
             }
         }
