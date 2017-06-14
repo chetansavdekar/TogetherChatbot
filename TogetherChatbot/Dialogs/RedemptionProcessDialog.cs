@@ -37,8 +37,8 @@ namespace TogetherChatbot.Dialogs
                 //this.objRedemption.DeliveryMethod = state.DeliveryMethod;
 
                 // call web service, post an objet objRedemption would be state to create a queue 
-                var queueNumber = "Q123";
-                await context.PostAsync($"Your case is created and assigned to respective queue. Your queue number is {queueNumber}.");
+                var queueNumber = "R12345";
+                await context.PostAsync($"Your redemption request has been created and your reference number is {queueNumber}. Our customer service representative will get in touch with you shortly.");
             };
 
             return new FormBuilder<Redemption>()

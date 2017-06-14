@@ -9,7 +9,7 @@ namespace TogetherChatbot.Model
     [Serializable]
     public class PreferredPaymentDate
     {
-        [Prompt("Please enter new prefered payment date (e.g. 15 days): {||}")]
-        public string PaymentDueDate;
+        [Prompt("Please enter a new prefered payment date in days (e.g. 5):")]
+        public int PaymentDueDate;
     }
 }

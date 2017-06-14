@@ -15,9 +15,9 @@ namespace TogetherChatbot.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        private const string RedemptionOption = "Redemption";
-        private const string BalanceOption = "Balance";
-        private const string PrerferedPaymentDueDateOption = "Preferred Payment Due Date";
+        private const string RedemptionOption = "Redeem your loan         ";
+        private const string BalanceOption = "Balance Enquiry";
+        private const string PrerferedPaymentDueDateOption = "Change Preferred Payment Due Date";
 
         public async Task StartAsync(IDialogContext context)
         {
@@ -28,9 +28,10 @@ namespace TogetherChatbot.Dialogs
         {
             var message = await result;
 
-            if((message.Text.ToLower().Contains("thanks")) || message.Text.ToLower().Contains("Thanks"))
+            if((message.Text.ToLower().Contains("thanks")) || message.Text.ToLower().Contains("sure") || message.Text.ToLower().Contains("noted"))
             {
-                this.ShowOptions(context);
+                await context.PostAsync("My pleasure!");
+                //this.ShowOptions(context);
             }
             else if ((message.Text.ToLower().Contains("hi")) || message.Text.ToLower().Contains("hello"))
             {
@@ -41,7 +42,7 @@ namespace TogetherChatbot.Dialogs
 
         private void ShowOptions(IDialogContext context)
         {
-            PromptDialog.Choice(context, this.OnOptionSelected, new List<string>() { RedemptionOption, BalanceOption, PrerferedPaymentDueDateOption }, "Please select from below option to help you better", "Not a valid option", 3);
+            PromptDialog.Choice(context, this.OnOptionSelected, new List<string>() { RedemptionOption, BalanceOption, PrerferedPaymentDueDateOption }, "How can I help you? Here are some quick links", "I am sorry but I didn't understand that. Please select from the below quick links.", 3);
         }
 
         private async Task OnOptionSelected(IDialogContext context, IAwaitable<string> result)

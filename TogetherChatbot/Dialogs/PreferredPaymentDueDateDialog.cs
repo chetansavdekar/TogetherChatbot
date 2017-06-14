@@ -14,7 +14,7 @@ namespace TogetherChatbot.Dialogs
     {
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Your preferred payment due date is " + DateTime.Now.ToString("dd/MM/yyyy") + " and the balance amount is $110");
+            await context.PostAsync("Your preferred payment due date is " + DateTime.Now.ToString("dd/MM/yyyy") + ".");
             var RedemptionFormDialog = FormDialog.FromForm(this.BuildPreferredPaymentDueDateForm, FormOptions.PromptInStart);
             context.Call(RedemptionFormDialog, this.EndTask);
         }
@@ -28,8 +28,8 @@ namespace TogetherChatbot.Dialogs
         {
             OnCompletionAsyncDelegate<PreferredPaymentDate> processBalanceEnquiry = async (context, state) =>
             {
-                var queueNumber = "R123";
-                await context.PostAsync($"Your preferred payment due date has been changed. Your reference number is {queueNumber}.");
+                //var queueNumber = "R12345";
+                await context.PostAsync($"Your preferred payment due date has been changed to "+ DateTime.Now.AddDays(state.PaymentDueDate).ToString("dd/MM/yyyy") + ", and your outstanding balance is £250.");
             };
 
             return new FormBuilder<PreferredPaymentDate>()

@@ -34,8 +34,8 @@ namespace TogetherChatbot.Dialogs
         {
             OnCompletionAsyncDelegate<BalanceEnquiry> processBalanceEnquiry = async (context, state) =>
             {
-                var amount = "$110";
-                await context.PostAsync($"Your outstanding balance amount is {amount}.");
+                var amount = "110";
+                await context.PostAsync($"Your outstanding loan balance is £{amount}.");
             };
 
             return new FormBuilder<BalanceEnquiry>()
@@ -52,7 +52,11 @@ namespace TogetherChatbot.Dialogs
                 //}))
                 //.Field(nameof(BalanceEnquiry.PersonalQues))
                 //.Field(nameof(BalanceEnquiry.AccSpecQues))
-                .AddRemainingFields()
+                .Field(nameof(BalanceEnquiry.LoanAccountNumber))
+                .Field(nameof(BalanceEnquiry.Party))
+                .Message("OTP has been sent to the registered mobile number of the selected loan party.")
+                .Field(nameof(BalanceEnquiry.OTPNumber), "Please enter the OTP: {||}")
+                //.AddRemainingFields()
                 .OnCompletion(processBalanceEnquiry)
                 .Build();
         }

@@ -10,7 +10,7 @@ namespace TogetherChatbot.Model
     { InformationPurposes, LitigationAction, Porting, Refinance, SaleOfProperty, NotKnown, Other }
 
     public enum RecipientType
-    { Customer, OurRepresentative, ThirdParty, Internal }
+    { Customer, OurRepresentative, ThirdParty }
 
     public enum DeliveryMode
     { Post, SecureEmail, Fax }
@@ -24,19 +24,19 @@ namespace TogetherChatbot.Model
 
         //public string CustomerName;
 
-        [Prompt("Please enter Redemption request received date: ")]
+        [Prompt("Please enter redemption request received date: ")]
         public DateTime RedemptionRequestDate;
 
         [Prompt("Please provide redemption settlement date: ")]
         public DateTime SettlementDate;
 
-        [Prompt("Please select a request reason: {||}")]
+        [Prompt("Why do you want to redeem the loan? {||}")]
         public RequestReasons Reason;
 
         [Prompt("Please select a recipient type: {||}")]
         public RecipientType Recipient;
 
-        [Prompt("Please select a delivery method: {||}")]
+        [Prompt("How do you want to receive your redemption statement? {||}")]
         public DeliveryMode DeliveryMethod;
 
     }
