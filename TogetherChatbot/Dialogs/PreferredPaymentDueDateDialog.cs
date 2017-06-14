@@ -29,7 +29,7 @@ namespace TogetherChatbot.Dialogs
             OnCompletionAsyncDelegate<PreferredPaymentDate> processBalanceEnquiry = async (context, state) =>
             {
                 //var queueNumber = "R12345";
-                await context.PostAsync($"Your preferred payment due date has been changed to "+ DateTime.Now.AddDays(state.PaymentDueDate).ToString("dd/MM/yyyy") + ", and your outstanding balance is £250.");
+                await context.PostAsync($"Your preferred payment due date has been changed to "+ DateTime.Now.AddDays(state.PaymentDueDate).ToString("dd/MM/yyyy") + ", and your new outstanding loan balance is £250.");
             };
 
             return new FormBuilder<PreferredPaymentDate>()
