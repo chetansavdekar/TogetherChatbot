@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Builder.FormFlow;
 using TogetherChatbot.Model;
+using Microsoft.Bot.Builder.FormFlow.Advanced;
 
 namespace TogetherChatbot.Dialogs
 {
@@ -32,6 +33,8 @@ namespace TogetherChatbot.Dialogs
 
         private IForm<BalanceEnquiry> BuildBalanceEnquiryForm()
         {
+            List<string> LoanParty = new List<string> { "Paul", "Smith", "Taylor" };
+
             OnCompletionAsyncDelegate<BalanceEnquiry> processBalanceEnquiry = async (context, state) =>
             {
                 var amount = "110,000";
@@ -53,7 +56,20 @@ namespace TogetherChatbot.Dialogs
                 //.Field(nameof(BalanceEnquiry.PersonalQues))
                 //.Field(nameof(BalanceEnquiry.AccSpecQues))
                 .Field(nameof(BalanceEnquiry.LoanAccountNumber))
-                .Field(nameof(BalanceEnquiry.Party))
+                .Field(
+                    new FieldReflector<BalanceEnquiry>(nameof(BalanceEnquiry.Party))
+                    .SetType(null)
+                    .SetDefine((state, field) =>
+                    {
+                        foreach (var party in LoanParty)
+                            field
+                                .AddDescription(party, party)
+                                .AddTerms(party, party);
+
+                        return Task.FromResult(true);
+                    })
+                )
+                //.Field(nameof(BalanceEnquiry.Party))
                 .Message("OTP has been sent to the registered mobile number of the selected loan party.")
                 .Field(nameof(BalanceEnquiry.OTPNumber), "Please enter the OTP: {||}")
                 //.AddRemainingFields()

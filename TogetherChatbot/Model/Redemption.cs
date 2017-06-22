@@ -7,13 +7,29 @@ using System.Web;
 namespace TogetherChatbot.Model
 {
     public enum RequestReasons
-    { InformationPurposes, LitigationAction, Porting, Refinance, SaleOfProperty, NotKnown, Other }
+    {
+        InformationPurposes = 1,
+        LitigationAction,
+        Porting,
+        Refinance,
+        SaleOfProperty,
+        NotKnown,
+        Other
+    }
 
     public enum RecipientType
-    { Customer, OurRepresentative, ThirdParty }
+    {
+        Customer =1,
+        OurRepresentative,
+        ThirdParty
+    }
 
     public enum DeliveryMode
-    { Post, SecureEmail, Fax }
+    {
+        Post =1,
+        SecureEmail,
+        Fax
+    }
 
     [Serializable]
     public class Redemption
@@ -31,13 +47,16 @@ namespace TogetherChatbot.Model
         public DateTime SettlementDate;
 
         [Prompt("Why do you want to redeem the loan? {||}")]
-        public RequestReasons Reason;
+        //public RequestReasons Reason;
+        public string Reason;
 
         [Prompt("Please select a recipient type: {||}")]
-        public RecipientType Recipient;
+        //public RecipientType Recipient;
+        public string Recipient;
 
         [Prompt("How do you want to receive your redemption statement? {||}")]
-        public DeliveryMode DeliveryMethod;
+        //public DeliveryMode DeliveryMethod;
+        public string DeliveryMethod;
 
     }
 }

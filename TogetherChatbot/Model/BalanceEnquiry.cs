@@ -6,21 +6,25 @@ using System.Web;
 
 namespace TogetherChatbot.Model
 {
-    public enum PartyNames
-    { Smith =1, Taylor =2, Paul=3 }
+    //public enum PartyNames
+    //{ Smith =1, Taylor =2, Paul=3 }
 
     [Serializable]
     public class BalanceEnquiry
     {
-        [Prompt("Please enter your loan account number: {||}")]
+        [Prompt("Please enter your Loan Account Number: {||}")]
         public string LoanAccountNumber;
 
         [Prompt("Please select a loan party: {||}")]
-        public PartyNames Party;
+        public string Party;
+        //public PartyNames Party;
+
 
         //[Prompt("Please enter loan contact number: {||}")]
         //public string ContactNumber;
 
+
+        //[Prompt("Please enter the OTP: {||}")]
         public string OTPNumber;
 
         //public PersonalQuestions PersonalQues;
